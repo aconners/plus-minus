@@ -1,0 +1,6 @@
+Big O Notation - Mars Exploration:
+
+The provided code counts the number of changes needed to make a message conform to a repeating "SOS" pattern. 
+Its time complexity scales linearly with the message length, meaning it takes longer for longer messages. 
+This is reflected in a Big O notation of O(n), as the dominant operation - iterating through the message in groups of 3 - directly depends on the input size. 
+The constant-time comparisons and increments within the loops don't significantly impact this overall linear growth rate.
