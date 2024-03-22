@@ -1,0 +1,61 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+
+class Result {
+
+    /*
+     * Complete the 'fibonacciModified' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER t1
+     *  2. INTEGER t2
+     *  3. INTEGER n
+     */
+
+    private static Map<Integer, BigInteger> memo = new HashMap<>();
+
+    public static BigInteger fibonacciModified(int t1, int t2, int n) {
+        if (n == 1) {
+            return BigInteger.valueOf(t1);
+        } else if (n == 2) {
+            return BigInteger.valueOf(t2);
+        } else {
+            if (memo.containsKey(n)) {
+                return memo.get(n);
+            } else {
+                BigInteger nthTerm = fibonacciModified(t1, t2, n - 2)
+                        .add(fibonacciModified(t1, t2, n - 1).multiply(fibonacciModified(t1, t2, n - 1)));
+                memo.put(n, nthTerm);
+                return nthTerm;
+            }
+        }
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        int t1 = Integer.parseInt(firstMultipleInput[0]);
+        int t2 = Integer.parseInt(firstMultipleInput[1]);
+        int n = Integer.parseInt(firstMultipleInput[2]);
+
+        BigInteger result = Result.fibonacciModified(t1, t2, n);
+
+        bufferedWriter.write(result.toString());
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
