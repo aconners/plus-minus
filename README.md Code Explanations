@@ -12,3 +12,21 @@ This is because the function traverses through the array once to tabulate the co
 In terms of space complexity, the plusMinus function operates at O(1), independent of the size of the input array. 
 It achieves this by utilizing a constant number of integer variables (positiveCount, negativeCount, zeroCount), thereby ensuring a steady memory footprint. 
 Additionally, it refrains from utilizing any supplementary data structures that could grow in proportion to the input size.
+
+Maximum Subarray (recursive explanation):
+
+The recursive algorithm provided in the code solves the Maximum Subarray problem. 
+
+In particular, the `maxSubarray` function aims to find two values for a given array `arr`:
+1. The maximum sum of a contiguous subarray (maximum subarray sum).
+2. The maximum sum of a subsequence (maximum subsequence sum).
+
+These two values are computed using separate functions:
+- `maxSubarraySum`: This function calculates the maximum subarray sum using Kadane's algorithm, 
+which efficiently finds the maximum sum of a contiguous subarray within the given array.
+- `maxSubsequenceSum`: This function calculates the maximum subsequence sum, which is the sum of 
+elements in a subsequence (not necessarily contiguous) that yields the maximum sum among all possible subsequences. 
+It iterates through the array and handles positive and negative numbers to compute this sum.
+
+Therefore, the recursive algorithm is designed to solve the Maximum Subarray problem by providing both 
+the maximum subarray sum and the maximum subsequence sum for a given input array.
