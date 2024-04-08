@@ -30,3 +30,13 @@ It iterates through the array and handles positive and negative numbers to compu
 
 Therefore, the recursive algorithm is designed to solve the Maximum Subarray problem by providing both 
 the maximum subarray sum and the maximum subsequence sum for a given input array.
+
+
+Recursive explanation for Coin Change:
+Base Case: If the target amount for making change is 0, there exists precisely one method to achieve this, 
+which is by opting not to use any coins. If the target amount is negative, it implies there are no viable ways to make change, thus returning 0.
+Recursive Case: When evaluating each coin within the available set, two choices present themselves:
+1. Utilize the current coin: Subtract the value of the current coin from the target amount and 
+recursively determine the count of ways to make change for the updated amount using the same set of coins.
+2. Exclude the current coin: Proceed to the next coin in the set without altering the target amount and 
+recursively ascertain the number of ways to make change for the same amount utilizing the remaining coins.
