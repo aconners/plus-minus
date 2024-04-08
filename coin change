@@ -1,0 +1,75 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+
+class Result {
+
+    /*
+     * Complete the 'getWays' function below.
+     *
+     * The function is expected to return a LONG_INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. LONG_INTEGER_ARRAY c
+     */
+
+    public static long getWays(int n, List<Long> c) {
+        // Call the recursive helper function
+        return getWaysRecursive(n, c, 0);
+    }
+    
+    private static long getWaysRecursive(int amount, List<Long> coins, int currentIndex) {
+        // Base case: If amount becomes 0, there's 1 way to make change (selecting no coins)
+        if (amount == 0)
+            return 1;
+        
+        // Base case: If amount is negative or we've exhausted all coins, there are 0 ways
+        if (amount < 0 || currentIndex == coins.size())
+            return 0;
+        
+        // Recursive case:
+        // 1. Include the current coin
+        long includeCurrentCoin = getWaysRecursive(amount - coins.get(currentIndex).intValue(), coins, currentIndex);
+        
+        // 2. Exclude the current coin and move to the next coin
+        long excludeCurrentCoin = getWaysRecursive(amount, coins, currentIndex + 1);
+        
+        // Total ways is the sum of ways obtained from including and excluding the current coin
+        return includeCurrentCoin + excludeCurrentCoin;
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        int n = Integer.parseInt(firstMultipleInput[0]);
+
+        int m = Integer.parseInt(firstMultipleInput[1]);
+
+        String[] cTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Long> c = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            long cItem = Long.parseLong(cTemp[i]);
+            c.add(cItem);
+        }
+
+        // Print the number of ways of making change for 'n' units using coins having the values given by 'c'
+        long ways = Result.getWays(n, c);
+        bufferedWriter.write(String.valueOf(ways));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
