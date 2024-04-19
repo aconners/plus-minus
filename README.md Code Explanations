@@ -40,3 +40,13 @@ Recursive Case: When evaluating each coin within the available set, two choices 
 recursively determine the count of ways to make change for the updated amount using the same set of coins.
 2. Exclude the current coin: Proceed to the next coin in the set without altering the target amount and 
 recursively ascertain the number of ways to make change for the same amount utilizing the remaining coins.
+
+Time and Space complexity Staircase:
+
+Time Complexity: The time complexity of this solution is O(n^2). This is because we have nested loops, one iterating n times (for each row) and the other iterating 
+from 0 to n (for each column in the row). So, in the worst case, it takes O(n * n) = O(n^2) time to print the entire staircase.
+Space Complexity: The space complexity is O(1) because we are not using any additional data structures that grow with the input size. 
+We are only using a few variables for iteration, so the space complexity remains constant regardless of the input size.
+
+
+
